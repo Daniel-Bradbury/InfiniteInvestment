@@ -1,10 +1,9 @@
 var readlineSync = require('readline-sync');
-
 const readline = require('readline');
-
-
 var seed = require('seed-random');
 var sleep = require('system-sleep');
+const cliCursor = require('cli-cursor');
+
 var base=10;
 var bank=10;
 var mps=0;
@@ -49,6 +48,7 @@ function shopdisplay(x) {
 }
 var state="main";
 function shop() {
+  cliCursor.show();
   console.clear();
   console.log();
   console.log("\033[1mShop\033[0m (type \"exit\" to return)");
@@ -80,6 +80,8 @@ function cycleBank() {
 }
 setInterval(cycleBank, 50);
 function main() {
+  console.clear();
+  cliCursor.hide();
   var rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout
@@ -97,7 +99,7 @@ function main() {
     if (breakloop==1) {
       return
     }
-    console.clear();
+    console.log("\033[0;0H")
     console.log();
     console.log("\033[1mCurrent Money\033[0m: \n$"+Math.floor(bank));
     console.log("\033[1mMoney Per Second\033[0m: \n$"+mps);
@@ -106,7 +108,6 @@ function main() {
     sleep(50);
   }
 }
-
 while(1==1) {
   main();
   shop();
