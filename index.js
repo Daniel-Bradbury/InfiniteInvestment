@@ -39,6 +39,14 @@ function itemMps(i) {
   
   return Math.floor(tempmps);
 }
+function genCharArray(charA, charZ) {
+    var a = [], i = charA.charCodeAt(0), j = charZ.charCodeAt(0);
+    for (; i <= j; ++i) {
+        a.push(String.fromCharCode(i));
+    }
+    return a;
+}
+
 function itemName(i) {
   var tempname=adjectives[randomRange(i^2,0,adjectives.length)]+" "+nouns[randomRange(i,0,nouns.length)];
   return tempname;
@@ -63,7 +71,7 @@ function shop() {
   console.log();
   while (1==1) {
     var purchaseitem=readlineSync.question('($'+Math.floor(bank)+')Buy? ');
-    if (purchaseitem=="") {
+    if (new RegExp(genCharArray('a', 'z').join("|")).test(purchaseitem)||purchaseitem=="") {
       return;
     }
     if (parseInt(purchaseitem)!=parseInt("")) {
@@ -104,10 +112,10 @@ function main() {
     }
     console.log("\033[0;0H")
     console.log();
-    console.log("\033[1mCurrent Money\033[0m:               \033[1mLevel\033[0m: "+level+"\n$"+Math.floor(bank));
+    console.log("\033[1mCurrent Money\033[0m:                      \033[1mLevel\033[0m: "+level+"\n$"+Math.floor(bank));
     console.log("\033[1mMoney Per Second\033[0m: \n$"+mps);
     console.log();
-    console.log("       (Press enter to use shop)");
+    console.log("            (Press enter to use shop)");
     sleep(50);
   }
 }
