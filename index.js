@@ -33,7 +33,7 @@ function itemMps(i) {
   tempmps=1;
   x=i-1;
   while (x!=0) {
-    tempmps*=1.2;
+    tempmps*=1.3;
     x--;
   }
   tempmps*=10
