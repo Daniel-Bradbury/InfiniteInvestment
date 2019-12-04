@@ -51,7 +51,7 @@ function shop() {
   cliCursor.show();
   console.clear();
   console.log();
-  console.log("\033[1mShop\033[0m (type \"exit\" to return)");
+  console.log("\033[1mShop\033[0m (Press enter to return)");
   console.log();
   var shopcount=readlineSync.question('View? ');
   if (shopcount=="exit") {
@@ -61,7 +61,7 @@ function shop() {
   console.log();
   while (1==1) {
     var purchaseitem=readlineSync.question('($'+Math.floor(bank)+')Buy? ');
-    if (purchaseitem=="exit") {
+    if (purchaseitem=="") {
       return;
     }
     if (parseInt(purchaseitem)!=parseInt("")) {
